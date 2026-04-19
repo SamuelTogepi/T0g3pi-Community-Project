@@ -33,7 +33,7 @@ brew install fakeroot ldid dpkg
 *Note: This script requires OpenSSH installed on the target device.*
 
 ## License & Credits
-Licensed under the **GNU General Public License v3.0**. 
+Licensed under the **BSD 3 License**. 
 
 **Special Thanks:** 
 Original project by [MatthewPierson](https://github.com/MatthewPierson). Additional thanks to PsychoTea, Pwn20wnd, Cryptiiic, and Nobbele for their foundational contributions to the arm64 jailbreak scene.
