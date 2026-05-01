@@ -19,6 +19,10 @@ arg_count=0
 disk=8
 extractedIpsw="ipsw/extracted/"
 
+if [ ! -d "ramdisk/" ]; then
+    git clone https://github.com/verygenericname/SSHRD_Script.git
+fi
+
 # =========
 # Functions
 # =========
