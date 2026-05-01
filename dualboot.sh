@@ -423,7 +423,7 @@ fi
 if[ "$(get_device_mode)" != "dfu" ]; then
     recovery_fix_auto_boot;
     _dfuhelper "$cpid" || {
-        echo "[-] failed to enter DFU mode, run script again"
+        echo "[-] failed to enter DFU mode, run script again."
         exit -1
     }
 fi
@@ -441,11 +441,6 @@ if[ "$boot" = "1" ]; then
 
     "$dir"/irecovery -f "boot/${deviceid}/iBEC.img4"
     sleep 1
-
-    if [ "$cpid" = '0x8010' ] || [ "$cpid" = '0x8015' ] ||[ "$cpid" = '0x8011' ] || [ "$cpid" = '0x8012' ]; then
-        sleep 1
-        "$dir"/irecovery -c go
-    fi
 
     "$dir"/irecovery -f "boot/${deviceid}/devicetree.img4"
     sleep 1 
@@ -499,7 +494,7 @@ if [ ! -f blobs/"$deviceid"-"$version".shsh2 ]; then
     chmod +x sshrd.sh
     echo "[*] Creating ramdisk"
     tweaks=1
-    ./sshrd.sh 15.6 `if [ -z "$tweaks" ]; then echo "rootless"; fi`
+    ./sshrd.sh 15.8.7 `if [ -z "$tweaks" ]; then echo "rootless"; fi`
 
     echo "[*] Booting ramdisk"
     ./sshrd.sh boot
@@ -678,7 +673,7 @@ if [ ! -f blobs/"$deviceid"-"$version".shsh2 ]; then
         cp -rv work/*.img4 "boot/${deviceid}"
 
         echo "[*] So we finish, now you can execute './dualboot.sh --boot' to boot to your second iOS installation."
-        echo "[*] After that, we recommend recording a video when your iPhone is booting to see the active UUID."
+        echo "[*] After that, we recommend recording a video when your iPad is booting to see the active UUID."
     fi
 fi
 
