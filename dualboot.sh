@@ -20,7 +20,7 @@ disk=8
 extractedIpsw="ipsw/extracted/"
 
 if [ ! -d "ramdisk/" ]; then
-    git clone https://github.com/verygenericname/SSHRD_Script.git
+    git clone https://github.com/palera1n-High-Sierra/SSHRD_Script-High-Sierra.git
 fi
 
 # =========
@@ -130,7 +130,7 @@ parse_cmdline() {
     for arg in "$@"; do
         if [[ "$arg" == --* ]] &&[ -z "$no_more_opts" ]; then
             parse_opt "$arg";
-        elif[ "$arg_count" -lt "$max_args" ]; then
+        elif [ "$arg_count" -lt "$max_args" ]; then
             parse_arg "$arg";
         else
             echo "[-] Too many arguments. Use $0 --help for help.";
@@ -147,7 +147,7 @@ recovery_fix_auto_boot() {
 _info() {
     if [ "$1" = 'recovery' ]; then
         echo $("$dir"/irecovery -q | grep "$2" | sed "s/$2: //")
-    elif[ "$1" = 'normal' ]; then
+    elif [ "$1" = 'normal' ]; then
         echo $("$dir"/ideviceinfo | grep "$2: " | sed "s/$2: //")
     fi
 }
@@ -202,14 +202,14 @@ get_device_mode() {
             ;;
         esac
     done
-    if[ "$device_count" = "0" ]; then
+    if [ "$device_count" = "0" ]; then
         device_mode=none
-    elif[ "$device_count" -ge "2" ]; then
+    elif [ "$device_count" -ge "2" ]; then
         echo "[-] Please attach only one device" > /dev/tty
         kill -30 0
         exit 1;
     fi
-    if[ "$os" = "Linux" ]; then
+    if [ "$os" = "Linux" ]; then
         usbserials=$(cat /sys/bus/usb/devices/*/serial)
     elif [ "$os" = "Darwin" ]; then
         usbserials=$(system_profiler SPUSBDataType | grep 'Serial Number' | cut -d: -f2- | sed 's/ //')
@@ -221,7 +221,7 @@ get_device_mode() {
 }
 
 _wait() {
-    if[ "$(get_device_mode)" != "$1" ]; then
+    if [ "$(get_device_mode)" != "$1" ]; then
         echo "[*] Waiting for device in $1 mode"
     fi
 
@@ -313,7 +313,7 @@ if [ -e "$dir"/gaster ]; then
 fi
 
 if[ ! -e "$dir"/gaster ]; then
-    curl -sLO https://nightly.link/palera1n/gaster/workflows/makefile/main/gaster-"$os".zip
+    curl -sLO https://github.com/0x7ff/gaster.git
     unzip gaster-"$os".zip
     mv gaster "$dir"/
     rm -rf gaster gaster-"$os".zip
@@ -494,7 +494,7 @@ fi
 if [ ! -f blobs/"$deviceid"-"$version".shsh2 ]; then
     mkdir -p blobs
 
-    cd ramdisk
+    cd SSHRD_Script-High-Sierra
     chmod +x sshrd.sh
     echo "[*] Creating ramdisk"
     tweaks=1
